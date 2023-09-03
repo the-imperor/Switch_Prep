@@ -1,3 +1,5 @@
+//new keyword : return pointer or address to the thing it is creating 
+
 
 #include <iostream>
 using namespace std;
