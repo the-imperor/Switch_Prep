@@ -1,0 +1,65 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+template <class T>
+void swap(T &q1,T &q2){
+    T temp = q2 ; 
+    q2 = q1;
+    q1 = temp;
+}
+
+struct Stack {
+  queue<int> q1,q2; //primary will be q1;
+  
+  void push(int val){
+      q2.push(val);
+      while(!q1.empty()){
+          q2.push(q1.front());
+          q1.pop();
+      }
+      swap(q1,q2);
+  }
+  
+  int pop(){
+      if(q1.empty()){
+          cout<<"stack is empty";
+          return -1;
+      }
+      int temp = q1.front();
+      q1.pop();
+      return temp;
+  }
+  
+  int top(){
+      if(q1.empty()){
+          cout<<"stack is empty";
+          return -1;
+      }
+      return q1.front();
+  }
+  
+  void display(){
+      queue t = q1;
+      string s = "";
+      while(!t.empty())
+      {
+          s+=to_string(t.front());
+          s+=",";
+          t.pop();
+      }
+      cout<<s.substr(0,s.size()-1);
+  }
+};
+
+int main() {
+    Stack* s = new Stack();
+    s->push(1);
+    s->push(2);
+    s->push(3);
+    cout<<"poped element is : " <<s->pop()<<endl;
+    cout<<"top element is : "<<s->top()<<endl;
+    s->push(4);
+    s->display();
+    cout<<"top element is : "<<s->top()<<endl;
+}
